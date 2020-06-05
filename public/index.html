@@ -10,6 +10,8 @@
 
 <body>
     <script>
+
+
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(async (position) => {
 
@@ -31,7 +33,11 @@
 
                 const response = await fetch('/api', option);
                 const json = await response.json();
-                console.log(json)
+
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.addEventListener('click', () => {
+                    console.log(json)
+                })
             });
             console.log('geolocation is available')
 
@@ -43,6 +49,7 @@
     <p>latitude:<span id="latitude"></span>&deg;<br>
         longitude: <span id="longitude"></span>&deg;
     </p>
+    <button id="submitBtn">Submit</button>
 </body>
 
 </html>
