@@ -21,6 +21,7 @@
                 document.getElementById('latitude').textContent = lat;
                 document.getElementById('longitude').textContent = lon;
 
+
                 const data = { lat, lon };
 
                 const option = {
@@ -36,7 +37,10 @@
                 submitBtn.addEventListener('click', async () => {
                     const response = await fetch('/api', option);
                     const json = await response.json();
+                    const nameValue = document.getElementById('name');
+                    json.name = nameValue.value;
                     console.log(json)
+
 
                 })
             });
@@ -50,6 +54,7 @@
     <p>latitude:<span id="latitude"></span>&deg;<br>
         longitude: <span id="longitude"></span>&deg;
     </p>
+    <input type="text" name="name" id="name">
     <button id="submitBtn">Submit</button>
 </body>
 

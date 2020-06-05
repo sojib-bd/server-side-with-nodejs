@@ -18,13 +18,14 @@ app.post('/api', (req, res) => {
     let timestamp = Date.now();
     data.timestamp = timestamp;
     console.log(timestamp)
+    console.log(data.name)
     database.insert(data)
 
     res.json({
         status: 'success',
         timestamp: timestamp,
         latitude: data.lat,
-        longitude: data.lon
+        longitude: data.lon,
     })
 
 
