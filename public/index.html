@@ -22,23 +22,24 @@
                 document.getElementById('longitude').textContent = lon;
 
 
-                const data = { lat, lon };
-
-                const option = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                }
 
 
                 const submitBtn = document.getElementById('submitBtn');
                 submitBtn.addEventListener('click', async () => {
+                    const nameValue = document.getElementById('name');
+                    const username = nameValue.value;
+
+                    const data = { lat, lon, username };
+
+                    const option = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    }
                     const response = await fetch('/api', option);
                     const json = await response.json();
-                    const nameValue = document.getElementById('name');
-                    json.name = nameValue.value;
                     console.log(json)
 
 
@@ -49,6 +50,9 @@
         } else {
             console.log(' geolocation IS NOT available')
         }
+
+
+
     </script>
     <h1>Selfie App with Node.js</h1>
     <p>latitude:<span id="latitude"></span>&deg;<br>
@@ -56,6 +60,10 @@
     </p>
     <input type="text" name="name" id="name">
     <button id="submitBtn">Submit</button>
+
+
+
+
 </body>
 
 </html>
